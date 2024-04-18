@@ -41,7 +41,7 @@ public class TestAddStudent {
     }
 
     @Test
-    public void addStudentWithInvalidGrupa() {
+    public void addStudentWithInvalidGrup() {
         Student testStudent = new Student("69", "Test Student", -1, "teststudent@gmail.com");
 
         try {
