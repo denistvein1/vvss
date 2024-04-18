@@ -164,10 +164,6 @@ public class Service {
         Student student = studentFileRepository.findOne(nota.getIdStudent());
         Tema tema = temaFileRepository.findOne(nota.getIdTema());
         int predare = calculeazaSPredare(nota.getData());
-        System.out.println("*".repeat(100));
-        System.out.println(predare);
-        System.out.println(tema.getDeadline());
-        System.out.println("*".repeat(100));
         if(predare != tema.getDeadline()){
             if (predare-tema.getDeadline() == 1){
                 nota.setNota(nota.getNota()-2.5);

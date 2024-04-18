@@ -27,8 +27,8 @@ public class TestAddStudent {
     Service service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
 
     @Test
-    public void addStudentWithValidGrupa() {
-        Student testStudent = new Student("69", "Test Student", 935, "teststudent@gmail.com");
+    public void testCase1() {
+        Student testStudent = new Student("10000", "Test Student", 935, "teststudent@gmail.com");
 
         try {
             service.addStudent(testStudent);
@@ -37,12 +37,23 @@ public class TestAddStudent {
             fail();
         }
 
-        assert(service.findStudent("7890") != null);
+        assert(service.findStudent("10000") != null);
     }
 
     @Test
-    public void addStudentWithInvalidGrup() {
-        Student testStudent = new Student("69", "Test Student", -1, "teststudent@gmail.com");
+    public void testCase2() {
+        Student testStudent = new Student("10001", "Test Student", 935, "teststudent@gmail.com");
+
+        try {
+            assert(service.addStudent(testStudent) != null);
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+        }
+    }
+
+    @Test
+    public void testCase3() {
+        Student testStudent = new Student("10002", "Test Student", -1, "teststudent@gmail.com");
 
         try {
             service.addStudent(testStudent);
@@ -52,4 +63,82 @@ public class TestAddStudent {
             assertTrue(true);
         }
     }
+
+    @Test
+    public void testCase4() {
+        Student testStudent = new Student("10003", "Test Student", 935, "");
+
+        try {
+            service.addStudent(testStudent);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testCase5() {
+        Student testStudent = new Student("10004", "Test Student", 935, null);
+
+        try {
+            service.addStudent(testStudent);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testCase6() {
+        Student testStudent = new Student("10005", "", 935, "teststudent@gmail.com");
+
+        try {
+            service.addStudent(testStudent);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testCase7() {
+        Student testStudent = new Student("10006", null, 935, "teststudent@gmail.com");
+
+        try {
+            service.addStudent(testStudent);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assertTrue(true);
+        }
+    }
+    @Test
+    public void testCase8() {
+        Student testStudent = new Student("", "Test Student", 935, "teststudent@gmail.com");
+
+        try {
+            service.addStudent(testStudent);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testCase9() {
+        Student testStudent = new Student(null, "Test Student", 935, "teststudent@gmail.com");
+
+        try {
+            service.addStudent(testStudent);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assertTrue(true);
+        }
+    }
+
 }
