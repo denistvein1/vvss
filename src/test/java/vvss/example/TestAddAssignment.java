@@ -55,4 +55,111 @@ public class TestAddAssignment {
         }
     }
 
+    @Test
+    public void testCase3() {
+        Tema temaToAdd = new Tema("", "Some description", 8, 6);
+
+        try {
+            service.addTema(temaToAdd);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assert(true);
+        }
+    }
+
+    @Test
+    public void testCase4() {
+        Tema temaToAdd = new Tema("10001", "", 8, 6);
+
+        try {
+            service.addTema(temaToAdd);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assert(true);
+        }
+    }
+
+    @Test
+    public void testCase5() {
+        Tema temaToAdd = new Tema("10002", null, 8, 6);
+
+        try {
+            service.addTema(temaToAdd);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assert(true);
+        }
+    }
+
+    @Test
+    public void testCase6() {
+        Tema temaToAdd = new Tema("10003", "", 15, 6);
+
+        try {
+            service.addTema(temaToAdd);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assert(true);
+        }
+    }
+
+    @Test
+    public void testCase7() {
+        Tema temaToAdd = new Tema("10004", "", 0, 6);
+
+        try {
+            service.addTema(temaToAdd);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assert(true);
+        }
+    }
+
+    @Test
+    public void testCase8() {
+        Tema temaToAdd = new Tema("10005", "", 8, 15);
+
+        try {
+            service.addTema(temaToAdd);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assert(true);
+        }
+    }
+
+    @Test
+    public void testCase9() {
+        Tema temaToAdd = new Tema("10006", "", 8, 0);
+
+        try {
+            service.addTema(temaToAdd);
+            fail();
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            assert(true);
+        }
+    }
+
+    @Test
+    public void testCase10() {
+        Tema temaToAdd = new Tema("10007", "Some description", 8, 6);
+
+        try {
+            service.addTema(temaToAdd);
+            assert(true);
+            Tema temaToAdd2 = service.addTema(temaToAdd);
+            assert(Objects.equals(temaToAdd2.getID(), temaToAdd.getID()));
+        } catch (ValidationException ve) {
+            System.out.println(ve.getMessage());
+            fail();
+        }
+
+        assert(service.findTema("10007") != null);
+    }
 }
