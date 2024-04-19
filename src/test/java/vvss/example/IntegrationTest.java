@@ -74,7 +74,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void integratedAddStudentAssignmentAndGrade() {
+    public void integratedAddGrade() {
         Student testStudent = new Student("24", "Jane Doe", 935, "janedoe@gmail.com");
         Tema newAssignment = new Tema("24", "Integration Testing Assignment", 8, 6);
         Nota newGrade = new Nota("102", "24", "24", 9.5, LocalDate.parse("2024-05-30"));
