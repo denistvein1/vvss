@@ -80,7 +80,6 @@ public abstract class AbstractCrudRepository <ID, E extends HasID<ID>> implement
         if(this.elemente.get(entity.getID()) == null){
             return entity;
         }
-        this.elemente.replace(entity.getID(), entity);
-        return null;
+        return this.elemente.replace(entity.getID(), entity);
     }
 }
